@@ -1,14 +1,13 @@
 import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
 import { SERVICES, STYLISTS } from '../constants';
 
-const API_KEY = process.env.API_KEY || '';
-
 let client: GoogleGenAI | null = null;
 let chatSession: Chat | null = null;
 
 const getClient = (): GoogleGenAI => {
   if (!client) {
-    client = new GoogleGenAI({ apiKey: API_KEY });
+    // The API key must be obtained exclusively from the environment variable process.env.API_KEY
+    client = new GoogleGenAI({ apiKey: process.env.API_KEY });
   }
   return client;
 };
